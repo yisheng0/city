@@ -36,7 +36,7 @@ function step(res) {
             res.status(500).send('内部服务器错误');
         });
 }
-app.get('/', (req, res) => {
+app.get('/sse', (req, res) => {
     res.setHeader('Content-Type', 'text/event-stream');
     res.status(200);
     step(res);

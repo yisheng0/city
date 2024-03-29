@@ -114,7 +114,7 @@ import juan from "./page/juan.vue"
 import yingyang from "./page/yingyang.vue"
 
 const data = ref(null)
-const sse = new EventSource('http://localhost:3000/');
+const sse = new EventSource('http://localhost:3000/sse');
 sse.addEventListener('message', handleSSEMessage);
 function handleSSEMessage(event) {
   data.value = JSON.parse(event.data)
