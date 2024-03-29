@@ -87,13 +87,12 @@
 
 <script setup>
 import * as Cesium from "cesium";
-import { onMounted, ref, h,render  } from "vue";
+import { onMounted, ref, h, render, watch } from "vue";
 
 import HorizontalBar from "./components/HorizontalBar.vue"
 import RadarBar from "./components/RadarBar.vue"
 import Relation from "./components/Relation.vue"
 import VerticalBar from "./components/VerticalBar.vue"
-import { getVisualization } from '@/api/visualization'
 import heightToolbar from "./components/heightToolbar.vue"
 
 import { ArrowDown } from '@element-plus/icons-vue'
@@ -115,25 +114,30 @@ import juan from "./page/juan.vue"
 import yingyang from "./page/yingyang.vue"
 
 const data = ref(null)
-const loadData = async () => {
-  data.value = await getVisualization()
-  // console.log(data.value)
+const sse = new EventSource('http://localhost:3000/');
+sse.addEventListener('message', handleSSEMessage);
+function handleSSEMessage(event) {
+  data.value = JSON.parse(event.data)
 }
-loadData()
-setInterval(() => {
-  loadData()
-}, 3000)
 
 let toolbar = ref(false)
 let show = ref(false);
 let main = ref()
 function transition() {
-  if (!show.value) {
+  setTimeout(() => {
+    if (!show.value) {
     main.value.classList.add("show")
   } else {
     main.value.classList.remove("show")
   }
   show.value = !show.value;
+  if (show.value) {
+    sse.addEventListener('message', handleSSEMessage);
+  } else {
+    sse.removeEventListener('message', handleSSEMessage);
+  }
+  }, 300);
+
 }
 
 
@@ -149,7 +153,7 @@ onMounted(() => {
   window.viewer = viewer;
   bool.value = true;
   addWorldTerrainAsync(viewer);
- addOsmBuildingsAsync(viewer);
+  addOsmBuildingsAsync(viewer);
   modifyMap(viewer);
   new CesiumNavigation(viewer, options);
   new mousePosition(viewer);
@@ -158,10 +162,10 @@ onMounted(() => {
 
 const cesiumContainer = ref(null)
 const renderjuan = () => {
-  if(bool.value) render(h(juan), cesiumContainer.value);
+  if (bool.value) render(h(juan), cesiumContainer.value);
 }
 const renderyingyang = () => {
-  if(bool.value) render(h(yingyang), cesiumContainer.value);
+  if (bool.value) render(h(yingyang), cesiumContainer.value);
 }
 
 const addWorldTerrainAsync = async (viewer) => {

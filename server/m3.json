@@ -1,0 +1,161 @@
+{
+    "regionData": {
+        "regions": [
+            {
+                "id": 1,
+                "name": "华北",
+                "value": 63
+            },
+            {
+                "id": 2,
+                "name": "东北",
+                "value": 36
+            },
+            {
+                "id": 3,
+                "name": "华东",
+                "value": 72
+            },
+            {
+                "id": 4,
+                "name": "中南",
+                "value": 71
+            },
+            {
+                "id": 5,
+                "name": "西南",
+                "value": 39
+            },
+            {
+                "id": 6,
+                "name": "西北",
+                "value": 37
+            }
+        ]
+    },
+    "serverData": {
+        "servers": [
+            {
+                "id": 1,
+                "name": "服务1",
+                "value": 53
+            },
+            {
+                "id": 2,
+                "name": "服务2",
+                "value": 81
+            },
+            {
+                "id": 3,
+                "name": "服务3",
+                "value": 36
+            },
+            {
+                "id": 4,
+                "name": "服务4",
+                "value": 37
+            },
+            {
+                "id": 5,
+                "name": "服务5",
+                "value": 41
+            },
+            {
+                "id": 6,
+                "name": "服务6",
+                "value": 58
+            }
+        ]
+    },
+    "riskData": {
+        "risks": [
+            {
+                "id": 1,
+                "name": "华北",
+                "value": 53
+            },
+            {
+                "id": 2,
+                "name": "东北",
+                "value": 45
+            },
+            {
+                "id": 3,
+                "name": "华东",
+                "value": 69
+            },
+            {
+                "id": 4,
+                "name": "中南",
+                "value": 41
+            },
+            {
+                "id": 5,
+                "name": "西南",
+                "value": 76
+            },
+            {
+                "id": 6,
+                "name": "西北",
+                "value": 88
+            }
+        ]
+    },
+    "relationData": {
+        "relations": [
+            {
+                "id": 1,
+                "name": "上级平台1",
+                "source": "上级平台1",
+                "target": "数据中心",
+                "speed": 162,
+                "value": [
+                    0,
+                    300
+                ]
+            },
+            {
+                "id": 2,
+                "name": "上级平台2",
+                "source": "上级平台2",
+                "target": "数据中心",
+                "speed": 134,
+                "value": [
+                    0,
+                    100
+                ]
+            },
+            {
+                "id": 3,
+                "name": "子级平台1",
+                "source": "数据中心",
+                "target": "子级平台1",
+                "speed": 132,
+                "value": [
+                    100,
+                    100
+                ]
+            },
+            {
+                "id": 4,
+                "name": "子级平台2",
+                "source": "数据中心",
+                "target": "子级平台2",
+                "speed": 126,
+                "value": [
+                    100,
+                    300
+                ]
+            },
+            {
+                "id": 0,
+                "name": "数据中心",
+                "speed": 129,
+                "value": [
+                    50,
+                    200
+                ]
+            }
+        ]
+    }
+}
