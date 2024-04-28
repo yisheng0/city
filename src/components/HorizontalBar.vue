@@ -7,30 +7,15 @@
 
 <script setup>
 import { onMounted, ref, watch } from 'vue'
-import * as echarts from 'echarts'
-
+import {useEcharts} from "./chart.js"
 const props = defineProps({
   data: {
     type: Object,
     required: true
   }
 })
-
-// 获取 dom 实例
 const target = ref(null)
-
-// echarts 实例变量
-let mChart = null
-// 在 mounted 生命周期之后，实例化 echarts
-onMounted(() => {
-  mChart = echarts.init(target.value )
-  // 渲染 echarts
-  renderChart()
-})
-
-// 渲染图表
-const renderChart = () => {
-  const options = {
+const options = {
     // X 轴展示数据
     xAxis: {
       // 数据展示
@@ -110,15 +95,16 @@ const renderChart = () => {
       }
     ]
   }
+let {initCharts, setOptions} = useEcharts(target, options)
+onMounted(() => {
+     initCharts()
+})
 
-  mChart.setOption(options)
-}
 
-// 监听数据的变化，重新渲染图表
 watch(
   () => props.data,
   () => {
-    renderChart()
+    setOptions(options)
   }
 )
 </script>
